@@ -1,8 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import * as apiService from '../../services/apiService';
 import slugify from 'slugify';
-// import useStyles from '../../services/stylesPagination';
 import Status from '../../services/status';
 import s from './HomeView.module.css';
 import LoaderComponent from '../../components/LoaderComponent';
@@ -12,8 +12,6 @@ import noImageFound from '../../img/no-image.jpg';
 const makeSlug = string => slugify(string, { lower: true });
 
 export default function HomeView() {
-  // const classes = useStyles();
-  // const history = useHistory();
   const location = useLocation();
   const [movies, setMovies] = useState(null);
   const [totalPage, setTotalPage] = useState(0);
@@ -37,10 +35,6 @@ export default function HomeView() {
         setStatus(Status.REJECTED);
       });
   }, [page]);
-
-  // const onHandlePage = (event, page) => {
-  //   history.push({ ...location, search: `page=${page}` });
-  // };
 
   return (
     <main>

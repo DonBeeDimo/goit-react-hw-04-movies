@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useParams, useLocation, useHistory } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import * as apiService from '../../services/apiService';
 import ShowMore from 'react-simple-show-more';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { Pagination } from '@material-ui/lab';
-// import useStyles from '../../services/stylesPagination';
 import Status from '../../services/status';
 import LoaderComponent from '../../components/LoaderComponent';
 import ErrorView from '../../components/ErrorView';
@@ -14,10 +12,9 @@ import s from './Reviews.module.css';
 export default function Reviews() {
   const { slug } = useParams();
   const movieId = slug.match(/[a-z0-9]+$/)[0];
-  //   const classes = useStyles();
-  const history = useHistory();
   const location = useLocation();
   const [reviews, setReviews] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [totalPage, setTotalPage] = useState(0);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
@@ -42,11 +39,7 @@ export default function Reviews() {
         setError('Something went wrong. Try again.');
         setStatus(Status.REJECTED);
       });
-  }, [movieId, page]);
-
-  //   const onHandlePage = (event, page) => {
-  //     history.push({ ...location, search: `page=${page}` });
-  //   };
+  }, [movieId, page, setTotalPage]);
 
   return (
     <>

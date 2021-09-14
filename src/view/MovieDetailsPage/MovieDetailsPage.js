@@ -61,7 +61,7 @@ export default function MovieDetailsPage() {
   return (
     <main className={s.main}>
       <button onClick={handleGoBack} type="button" className={s.btn}>
-        &#9754; Go back
+        ᐊ Go back
       </button>
 
       {status === Status.PENDING && <LoaderComponent />}

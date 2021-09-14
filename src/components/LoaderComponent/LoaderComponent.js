@@ -2,7 +2,7 @@ import Loader from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import s from './LoaderComponent.module.css';
 
-function LoaderComponent() {
+export default function LoaderComponent() {
   return (
     <div className={s.overlay}>
       <Loader
@@ -15,5 +15,3 @@ function LoaderComponent() {
     </div>
   );
 }
-
-export default LoaderComponent;

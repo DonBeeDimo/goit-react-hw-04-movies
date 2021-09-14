@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
 import * as apiService from '../../services/apiService';
 import slugify from 'slugify';
-// import { Pagination } from '@material-ui/lab';
-// import useStyles from '../../services/stylesPagination';
 import Status from '../../services/status';
 import LoaderComponent from '../../components/LoaderComponent';
 import ErrorView from '../../components/ErrorView';
@@ -14,11 +12,11 @@ import s from './MoviesView.module.css';
 const makeSlug = string => slugify(string, { lower: true });
 
 export default function MoviesPage() {
-  // const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
   const { url } = useRouteMatch();
   const [query, setQuery] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [totalPage, setTotalPage] = useState(0);
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(null);
@@ -56,7 +54,7 @@ export default function MoviesPage() {
         setError(error.message);
         setStatus(Status.REJECTED);
       });
-  }, [query, page]);
+  }, [query, page, setTotalPage]);
 
   const searchImages = newSearch => {
     if (query === newSearch) return;
@@ -65,10 +63,6 @@ export default function MoviesPage() {
     setError(null);
     setStatus(Status.IDLE);
     history.push({ ...location, search: `query=${newSearch}&page=1` });
-  };
-
-  const onHandlePage = (event, page) => {
-    history.push({ ...location, search: `query=${query}&page=${page}` });
   };
 
   return (
